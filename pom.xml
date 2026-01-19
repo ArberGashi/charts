@@ -117,6 +117,7 @@
                     <configuration>
                         <release>25</release>
                         <doclint>none</doclint>
+                        <bottom>Copyright (c) Arber Gashi</bottom>
                     </configuration>
                 </plugin>
 
