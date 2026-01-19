@@ -7,6 +7,7 @@ Requirements:
 - JBR 25 JDK installed per target OS
 - `JBR_HOME` set to the JBR JDK root
 - Maven available on PATH
+- Icons generated from `appicon.svg` (see below)
 
 ---
 
@@ -46,4 +47,19 @@ Output: `dist/linux/`
 ## Notes
 
 - The demo uses `--enable-native-access=ALL-UNNAMED` to avoid JBR warnings.
-- Icon files can be added later via `--icon` once platform-specific assets are ready.
+- `--icon` is applied automatically when icon files exist in `docs/packaging/icons`.
+
+---
+
+## Icon Generation
+
+Generate platform icons from `appicon.svg`:
+
+```bash
+./scripts/generate_app_icons.sh
+```
+
+Dependencies:
+- `rsvg-convert` (macOS: `brew install librsvg`)
+- `iconutil` (macOS default)
+- `png2ico` for Windows `.ico` (optional)

@@ -5,7 +5,9 @@ param(
     [string]$MainJar = "arbercharts-demo-1.0.0.jar",
     [string]$MainClass = "com.arbergashi.charts.Application",
     [string]$InputDir = "arbercharts-demo/target",
-    [string]$OutputDir = "dist/windows"
+    [string]$OutputDir = "dist/windows",
+    [string]$IconDir = "docs/packaging/icons",
+    [string]$IconPath = ""
 )
 
 if ([string]::IsNullOrWhiteSpace($JbrHome)) {
@@ -16,6 +18,15 @@ mvn -pl arbercharts-demo -am package
 
 New-Item -ItemType Directory -Force -Path $OutputDir | Out-Null
 
+$resolvedIcon = $IconPath
+if ([string]::IsNullOrWhiteSpace($resolvedIcon)) {
+    $resolvedIcon = Join-Path $IconDir "appicon.ico"
+}
+$iconArgs = @()
+if (Test-Path $resolvedIcon) {
+    $iconArgs = @("--icon", $resolvedIcon)
+}
+
 & "$JbrHome/bin/jpackage.exe" `
   --type msi `
   --name "$AppName" `
@@ -24,4 +35,5 @@ New-Item -ItemType Directory -Force -Path $OutputDir | Out-Null
   --main-jar "$MainJar" `
   --main-class "$MainClass" `
   --java-options "--enable-native-access=ALL-UNNAMED" `
+  @iconArgs `
   --dest "$OutputDir"
