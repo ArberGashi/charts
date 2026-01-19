@@ -15,10 +15,11 @@ mvn -pl arbercharts-demo -am package
 
 mkdir -p "${OUTPUT_DIR}"
 
-ICON_ARGS=()
-if [[ -f "${ICON_PATH}" ]]; then
-  ICON_ARGS=(--icon "${ICON_PATH}")
+if [[ ! -f "${ICON_PATH}" ]]; then
+  echo "Missing icon: ${ICON_PATH}" >&2
+  exit 1
 fi
+ICON_ARGS=(--icon "${ICON_PATH}")
 
 "${JBR_HOME}/bin/jpackage" \
   --type deb \

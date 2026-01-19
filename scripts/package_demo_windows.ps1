@@ -22,10 +22,10 @@ $resolvedIcon = $IconPath
 if ([string]::IsNullOrWhiteSpace($resolvedIcon)) {
     $resolvedIcon = Join-Path $IconDir "appicon.ico"
 }
-$iconArgs = @()
-if (Test-Path $resolvedIcon) {
-    $iconArgs = @("--icon", $resolvedIcon)
+if (!(Test-Path $resolvedIcon)) {
+    throw "Missing icon: $resolvedIcon"
 }
+$iconArgs = @("--icon", $resolvedIcon)
 
 & "$JbrHome/bin/jpackage.exe" `
   --type msi `

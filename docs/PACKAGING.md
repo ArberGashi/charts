@@ -47,7 +47,7 @@ Output: `dist/linux/`
 ## Notes
 
 - The demo uses `--enable-native-access=ALL-UNNAMED` to avoid JBR warnings.
-- `--icon` is applied automatically when icon files exist in `docs/packaging/icons`.
+- `--icon` is required and expects files in `docs/packaging/icons`.
 
 ---
 
