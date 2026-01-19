@@ -187,7 +187,7 @@ public class ArberChartPanel extends JPanel {
      *
      * @param model    The data model containing the series data.
      * @param renderer The renderer used to visualize this specific series.
-     * @implNote This method is safe to call on the EDT only; it triggers repainting.
+     * Implementation note: This method is safe to call on the EDT only; it triggers repainting.
      */
     public void addLayer(ChartModel model, ChartRenderer renderer) {
         if (model == null || renderer == null) return;
@@ -221,7 +221,7 @@ public class ArberChartPanel extends JPanel {
      * </p>
      *
      * @param renderer The overlay renderer.
-     * @implNote Overlay renderers share the primary model and are drawn as additional layers.
+     * Implementation note: Overlay renderers share the primary model and are drawn as additional layers.
      */
     public void addOverlay(ChartRenderer renderer) {
         if (layers.isEmpty()) return;
@@ -231,7 +231,7 @@ public class ArberChartPanel extends JPanel {
     /**
      * Removes all layers and clears the chart.
      *
-     * @implNote Listeners are removed and the panel is repainted.
+     * Implementation note: Listeners are removed and the panel is repainted.
      */
     public void clearLayers() {
         for (RenderLayer layer : layers) {
