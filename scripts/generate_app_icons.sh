@@ -33,7 +33,13 @@ cp "${TMP_DIR}/icon_512x512.png" "${iconset}/icon_256x256@2x.png"
 cp "${TMP_DIR}/icon_512x512.png" "${iconset}/icon_512x512.png"
 cp "${TMP_DIR}/icon_1024x1024.png" "${iconset}/icon_512x512@2x.png"
 
-iconutil -c icns "${iconset}" -o "${OUTPUT_DIR}/appicon.icns"
+if command -v iconutil >/dev/null 2>&1; then
+  if ! iconutil --convert icns --output "${OUTPUT_DIR}/appicon.icns" "${iconset}"; then
+    echo "iconutil failed to generate .icns; leaving iconset in ${iconset}" >&2
+  fi
+else
+  echo "iconutil not found; skipped macOS .icns generation." >&2
+fi
 
 # Linux PNG (512x512)
 cp "${TMP_DIR}/icon_512x512.png" "${OUTPUT_DIR}/appicon.png"
