@@ -50,8 +50,7 @@ if command -v png2ico >/dev/null 2>&1; then
     "${TMP_DIR}/icon_16x16.png" \
     "${TMP_DIR}/icon_32x32.png" \
     "${TMP_DIR}/icon_64x64.png" \
-    "${TMP_DIR}/icon_128x128.png" \
-    "${TMP_DIR}/icon_256x256.png"
+    "${TMP_DIR}/icon_128x128.png"
 else
   echo "png2ico not found; skipped Windows .ico generation." >&2
 fi
