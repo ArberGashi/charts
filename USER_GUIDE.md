@@ -6,6 +6,8 @@ Related docs:
 - `PUBLIC_API.md` for the stable API map
 - `RENDERER_CATALOG.md` for renderer IDs and icon keys
 - `QUALITY_REPORT.md` for baseline results
+- `LICENSING.md` for commercial licensing terms
+- `PRICING.md` for current price tiers
 
 ---
 
@@ -171,3 +173,28 @@ Build and run the demo app:
 mvn -pl arbercharts-demo package
 java --enable-native-access=ALL-UNNAMED -jar arbercharts-demo/target/arbercharts-demo-1.0.0.jar
 ```
+
+---
+
+## 13) Packaged Demo (JBR 25)
+
+To ship the demo with a bundled JetBrains Runtime 25, use the packaging scripts:
+- `docs/PACKAGING.md` for requirements and commands
+- Output artifacts live under `dist/` per OS
+
+---
+
+## 14) API Documentation
+
+Generated Javadocs are stored in:
+- `docs/javadoc/index.html`
+
+---
+
+## 15) Licensing Overview
+
+ArberCharts is proprietary software with:
+- A free, unlimited Developer License for evaluation and development
+- A paid Distribution/Runtime License for end-customer delivery
+
+See `LICENSING.md` and `PRICING.md` for details.
