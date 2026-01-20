@@ -22,7 +22,6 @@ The source code is proprietary and is not published here.
 Release assets are published on GitHub Releases:
 - Core JAR: `arbercharts-core-1.0.0.jar`
 - Demo JAR: `arbercharts-demo-1.0.0.jar`
-- Installers: macOS (.dmg), Windows (.msi), Linux (.deb)
 
 ## Quick Start (Demo)
 
