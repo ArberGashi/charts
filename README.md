@@ -41,5 +41,7 @@ java --enable-native-access=ALL-UNNAMED -jar arbercharts-demo-1.0.0.jar
 
 ## Support
 
+https://github.com/ArberGashi/charts/releases
+
 gashi@pro-business.ch  
 https://www.arbergashi.com
