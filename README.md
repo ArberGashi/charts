@@ -48,14 +48,13 @@ https://github.com/ArberGashi/charts/releases
 gashi@pro-business.ch  
 https://www.arbergashi.com
 
-<img width="1944" height="1380" alt="network" src="https://github.com/user-attachments/assets/90a9c752-e053-4fea-aadb-79d40293981a" />
-<img width="1944" height="1444" alt="kagi" src="https://github.com/user-attachments/assets/d8f3e3aa-f6a3-40a6-8ed4-624cd0959cdf" />
-<img width="1944" height="1444" alt="ichimoku" src="https://github.com/user-attachments/assets/1996a5f1-5b91-4473-89b9-14c2477c87f5" />
-<img width="1944" height="1444" alt="gauge" src="https://github.com/user-attachments/assets/58e46dcf-1b57-4486-93ef-2d974ba19890" />
-<img width="1944" height="1380" alt="errorbar" src="https://github.com/user-attachments/assets/913a7e63-47ab-4c4d-8448-ee3a970f6334" />
-<img width="1944" height="1444" alt="ecg1" src="https://github.com/user-attachments/assets/4612f4d4-b8ab-4611-84a5-fae868cf7931" />
-<img width="1944" height="1380" alt="dendogram" src="https://github.com/user-attachments/assets/a9bed5f4-a601-4731-88a4-d70664ac1839" />
-<img width="1944" height="1380" alt="delaunay" src="https://github.com/user-attachments/assets/62c57de9-4f07-43a9-9497-02fd39224147" />
-<img width="2108" height="1444" alt="candlestick" src="https://github.com/user-attachments/assets/5990ee85-6815-468c-ac83-02366f16f9df" />
-<img width="1944" height="1380" alt="boxplot" src="https://github.com/user-attachments/assets/27897e1e-e8a7-4daa-a971-adb7772f9046" />
-
+<img width="2108" height="1444" alt="radarchart" src="https://github.com/user-attachments/assets/55380ce5-8f1e-4ccb-9296-b9bf8e33c029" />
+<img width="1944" height="1380" alt="parallelcoordinates" src="https://github.com/user-attachments/assets/a779e48d-707c-44d7-af44-603997f720fc" />
+<img width="1944" height="1380" alt="network" src="https://github.com/user-attachments/assets/9e3ae729-3402-4f35-b487-84f0548a91db" />
+<img width="1944" height="1444" alt="medicalsweep" src="https://github.com/user-attachments/assets/5acf24bb-5280-4983-908c-095a693d68df" />
+<img width="1944" height="1444" alt="ichimoku" src="https://github.com/user-attachments/assets/e1023943-0dfc-44da-a0d1-8bc7c889b6cc" />
+<img width="1944" height="1380" alt="heatmap" src="https://github.com/user-attachments/assets/6a89f968-80a8-444f-931f-891b6ccd5cf0" />
+<img width="1944" height="1380" alt="errorbar" src="https://github.com/user-attachments/assets/a211202f-2e81-437e-b74e-94c078f45cf8" />
+<img width="1944" height="1444" alt="ecg1" src="https://github.com/user-attachments/assets/cbed4862-db2c-42b2-b70b-a96c8ca63e26" />
+<img width="1944" height="1380" alt="delaunay" src="https://github.com/user-attachments/assets/1fd97e7f-0ddc-4e20-b814-d557f74acb6e" />
+<img width="2108" height="1444" alt="candlestick" src="https://github.com/user-attachments/assets/7dd1a0ae-6bdd-406e-b83d-b9ba23187a77" />
