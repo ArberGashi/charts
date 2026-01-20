@@ -36,8 +36,10 @@ java --enable-native-access=ALL-UNNAMED -jar arbercharts-demo-1.0.0.jar
 
 ## License (Proprietary)
 
-- Developer License: free and unlimited for development & evaluation
-- Runtime/Distribution License: required for commercial products shipped to end customers
+    39 -- Developer License: free and unlimited for development & evaluation
+    39 +- Individual Developer License: free for development & evaluation
+    40 +- Team License: required for small and large teams
+    41  - Runtime/Distribution License: required for commercial products shipped to end customers
 
 ## Support
 
