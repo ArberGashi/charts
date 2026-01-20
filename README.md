@@ -24,23 +24,6 @@ Release assets are published on GitHub Releases:
 - Demo JAR: `arbercharts-demo-1.0.0.jar`
 - Installers: macOS (.dmg), Windows (.msi), Linux (.deb)
 
-## Screenshots
-
-Selected chart previews (from `site/images`):
-
-![ECG](site/images/ecg1.png)
-![Candlestick](site/images/candlestick.png)
-![Sankey](site/images/sankey.png)
-![Ichimoku](site/images/ichimoku.png)
-![Heatmap](site/images/heatmap.png)
-![Radar](site/images/radarchart.png)
-![Parallel Coordinates](site/images/parallelcoordinates.png)
-![Hexbin](site/images/hexbin.png)
-![Voronoi](site/images/voronoi.png)
-![Delaunay](site/images/delaunay.png)
-![Chord](site/images/chord.png)
-![Boxplot](site/images/boxplot.png)
-
 ## Quick Start (Demo)
 
 ```bash
