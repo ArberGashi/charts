@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AxisConfigTest {
@@ -43,5 +44,19 @@ class AxisConfigTest {
 
         config.setLocale(Locale.GERMANY);
         assertEquals("100,00", config.formatValue(100));
+    }
+
+    @Test
+    void testFixedRangeAndUnitsPerPixel() {
+        AxisConfig config = new AxisConfig();
+        assertFalse(config.hasFixedRange());
+
+        config.setFixedRange(-5.0, 15.0);
+        assertTrue(config.hasFixedRange());
+        assertEquals(-5.0, config.getFixedMin());
+        assertEquals(15.0, config.getFixedMax());
+
+        config.setUnitsPerPixel(0.25);
+        assertEquals(0.25, config.getUnitsPerPixel());
     }
 }

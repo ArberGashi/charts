@@ -95,6 +95,27 @@ public interface PlotContext {
     }
 
     /**
+     * Whether the X axis is inverted (max-to-min).
+     */
+    default boolean isInvertedX() {
+        return false;
+    }
+
+    /**
+     * Whether the Y axis is inverted (max-to-min).
+     */
+    default boolean isInvertedY() {
+        return false;
+    }
+
+    /**
+     * Rendering hints for the current render pass.
+     */
+    default ChartRenderHints renderHints() {
+        return null;
+    }
+
+    /**
      * Theme associated with the current rendering context.
      *
      * <p><b>Framework contract:</b> This must be non-null during rendering.

@@ -1,13 +1,16 @@
 package com.arbergashi.charts.quality;
 
 import com.arbergashi.charts.api.ChartTheme;
+import com.arbergashi.charts.api.ChartRenderHints;
 import com.arbergashi.charts.api.ChartThemes;
 import com.arbergashi.charts.api.DefaultPlotContext;
 import com.arbergashi.charts.api.PlotContext;
 import com.arbergashi.charts.model.ChartModel;
+import com.arbergashi.charts.model.BoxPlotOutlierModel;
 import com.arbergashi.charts.model.DefaultChartModel;
 import com.arbergashi.charts.render.BaseRenderer;
 import com.arbergashi.charts.render.financial.CandlestickRenderer;
+import com.arbergashi.charts.render.statistical.BoxPlotRenderer;
 import com.arbergashi.charts.render.standard.LineRenderer;
 import com.arbergashi.charts.render.standard.ScatterRenderer;
 import com.arbergashi.charts.render.statistical.HistogramRenderer;
@@ -30,12 +33,14 @@ class PerformanceBaselineReportTest {
         ChartModel scatterModel = buildScatterModel(2000);
         ChartModel histModel = buildHistogramModel(2000);
         ChartModel ohlcModel = buildOhlcModel(600);
+        ChartModel boxModel = buildBoxPlotOutlierModel(200);
 
         List<Sample> samples = List.of(
                 sample("line", new LineRenderer(), lineModel, bounds, theme),
                 sample("scatter", new ScatterRenderer(), scatterModel, bounds, theme),
                 sample("histogram", new HistogramRenderer(), histModel, bounds, theme),
-                sample("candlestick", new CandlestickRenderer(), ohlcModel, bounds, theme)
+                sample("candlestick", new CandlestickRenderer(), ohlcModel, bounds, theme),
+                sample("boxplot", new BoxPlotRenderer(), boxModel, bounds, theme)
         );
 
         for (Sample s : samples) {
@@ -47,7 +52,8 @@ class PerformanceBaselineReportTest {
 
     private static Sample sample(String name, BaseRenderer renderer, ChartModel model, Rectangle2D bounds, ChartTheme theme) {
         renderer.setTheme(theme);
-        PlotContext ctx = new DefaultPlotContext(bounds, model, Double.NaN, Double.NaN, Double.NaN, Double.NaN, theme);
+        ChartRenderHints hints = new ChartRenderHints().setStrokeWidth(1.6f);
+        PlotContext ctx = new DefaultPlotContext(bounds, model, Double.NaN, Double.NaN, Double.NaN, Double.NaN, theme, hints);
         return new Sample(name, renderer, model, ctx, (int) bounds.getWidth(), (int) bounds.getHeight());
     }
 
@@ -118,6 +124,50 @@ class PerformanceBaselineReportTest {
         return model;
     }
 
+    private static ChartModel buildBoxPlotOutlierModel(int points) {
+        BoxPlotPerfModel model = new BoxPlotPerfModel("BoxPlotPerf");
+        for (int i = 0; i < points; i++) {
+            double median = 25 + (i % 7);
+            double iqr = 5 + (i % 3);
+            double q1 = median - iqr / 2.0;
+            double q3 = median + iqr / 2.0;
+            double min = q1 - 1.5 * iqr;
+            double max = q3 + 1.5 * iqr;
+            double[] outliers = (i % 3 == 0) ? new double[]{max + 6.0, min - 4.0} : new double[]{max + 3.0};
+            model.addBoxPlot(i, median, min, max, iqr, "p" + i, outliers);
+        }
+        return model;
+    }
+
     private record Sample(String name, BaseRenderer renderer, ChartModel model, PlotContext context, int width, int height) {
+    }
+
+    private static final class BoxPlotPerfModel extends DefaultChartModel implements BoxPlotOutlierModel {
+        private double[][] outliers = new double[64][];
+
+        BoxPlotPerfModel(String name) {
+            super(name);
+        }
+
+        void addBoxPlot(double x, double median, double min, double max, double iqr, String label, double[] outlierValues) {
+            addPoint(x, median, min, max, iqr, label);
+            int idx = getPointCount() - 1;
+            ensureCapacity(idx + 1);
+            outliers[idx] = outlierValues;
+        }
+
+        @Override
+        public double[] getOutliers(int index) {
+            if (index < 0 || index >= getPointCount()) return EMPTY_DOUBLE;
+            double[] vals = outliers[index];
+            return vals != null ? vals : EMPTY_DOUBLE;
+        }
+
+        private void ensureCapacity(int size) {
+            if (outliers.length >= size) return;
+            double[][] next = new double[Math.max(size, outliers.length * 2)][];
+            System.arraycopy(outliers, 0, next, 0, outliers.length);
+            outliers = next;
+        }
     }
 }

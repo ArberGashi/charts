@@ -37,6 +37,8 @@ public class PlotContextTest {
                 2.0,
                 2.0,
                 false,
+                false,
+                false,
                 com.arbergashi.charts.util.NiceScale.ScaleMode.LINEAR,
                 com.arbergashi.charts.util.NiceScale.ScaleMode.LINEAR
         );
@@ -50,5 +52,53 @@ public class PlotContextTest {
         ctx.mapToData(pix[0], pix[1], data);
         assertTrue(Double.isFinite(data[0]));
         assertTrue(Double.isFinite(data[1]));
+    }
+
+    @Test
+    public void renderHintsAreAccessible() {
+        Rectangle2D.Double bounds = new Rectangle2D.Double(0, 0, 200, 100);
+        ChartRenderHints hints = new ChartRenderHints().setStrokeWidth(2.0f);
+        DefaultPlotContext ctx = new DefaultPlotContext(
+                bounds,
+                null,
+                0.0,
+                10.0,
+                0.0,
+                10.0,
+                ChartThemes.defaultDark(),
+                hints
+        );
+
+        assertSame(hints, ctx.renderHints());
+        assertEquals(2.0f, ctx.renderHints().getStrokeWidth());
+    }
+
+    @Test
+    public void invertedAxesMirrorMapping() {
+        Rectangle2D.Double bounds = new Rectangle2D.Double(0, 0, 200, 100);
+        DefaultPlotContext ctx = new DefaultPlotContext(
+                bounds,
+                0.0,
+                10.0,
+                0.0,
+                10.0,
+                false,
+                true,
+                true,
+                com.arbergashi.charts.util.NiceScale.ScaleMode.LINEAR,
+                com.arbergashi.charts.util.NiceScale.ScaleMode.LINEAR,
+                ChartThemes.defaultDark(),
+                null
+        );
+
+        double[] pix = new double[2];
+        ctx.mapToPixel(0.0, 0.0, pix);
+        assertEquals(bounds.getMaxX(), pix[0], 1e-6);
+        assertEquals(bounds.getY(), pix[1], 1e-6);
+
+        double[] data = new double[2];
+        ctx.mapToData(pix[0], pix[1], data);
+        assertEquals(0.0, data[0], 1e-6);
+        assertEquals(0.0, data[1], 1e-6);
     }
 }

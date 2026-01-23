@@ -81,7 +81,7 @@ public final class AboutDialog {
         highlightsCard.add(highlightsTitle, BorderLayout.NORTH);
 
         JTextArea highlightsText = new JTextArea(
-                "- 141 renderers across standard, analysis, financial, and medical.\n" +
+                "- 139 renderers across standard, analysis, financial, and medical.\n" +
                 "- Precision grids, crosshair, legend, and tooltips.\n" +
                 "- FlatLaf light/dark themes with HiDPI scaling.\n" +
                 "- Zero-GC renderer paths tuned for performance.\n" +

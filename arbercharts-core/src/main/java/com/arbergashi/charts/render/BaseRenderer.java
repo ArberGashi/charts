@@ -44,6 +44,7 @@ public abstract class BaseRenderer implements com.arbergashi.charts.render.Chart
 
     // Theme for this renderer
     private ChartTheme theme;
+    private transient PlotContext activeContext;
 
     // Layer index for multi-layer charts (0-based)
     private int layerIndex = 0;
@@ -191,7 +192,12 @@ public abstract class BaseRenderer implements com.arbergashi.charts.render.Chart
         // Reset path cache before each frame
         pathCache.reset();
 
-        drawData(g2, model, context);
+        activeContext = context;
+        try {
+            drawData(g2, model, context);
+        } finally {
+            activeContext = null;
+        }
     }
 
     /**
@@ -292,7 +298,14 @@ public abstract class BaseRenderer implements com.arbergashi.charts.render.Chart
     }
 
     protected Stroke getSeriesStroke() {
-        return getCachedStroke(ChartScale.scale(1.5f));
+        float base = 1.5f;
+        if (activeContext != null && activeContext.renderHints() != null) {
+            Float hinted = activeContext.renderHints().getStrokeWidth();
+            if (hinted != null && Float.isFinite(hinted) && hinted > 0f) {
+                base = hinted;
+            }
+        }
+        return getCachedStroke(ChartScale.scale(base));
     }
 
     // --- Shape Helpers (Zero-Allocation via Shared Cache) ---

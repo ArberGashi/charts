@@ -28,7 +28,8 @@ public record DefaultPlotContext(
         boolean logarithmicY,
         NiceScale.ScaleMode scaleModeX,
         NiceScale.ScaleMode scaleModeY,
-        ChartTheme theme
+        ChartTheme theme,
+        com.arbergashi.charts.api.ChartRenderHints renderHints
 ) implements PlotContext {
 
     public DefaultPlotContext {
@@ -50,7 +51,7 @@ public record DefaultPlotContext(
                               boolean logarithmicY,
                               NiceScale.ScaleMode scaleModeX,
                               NiceScale.ScaleMode scaleModeY) {
-        this(bounds, minX, maxX, minY, maxY, logarithmicY, scaleModeX, scaleModeY, null);
+        this(bounds, minX, maxX, minY, maxY, logarithmicY, scaleModeX, scaleModeY, null, null);
     }
 
     /**
@@ -65,6 +66,7 @@ public record DefaultPlotContext(
                 false,
                 NiceScale.ScaleMode.LINEAR,
                 NiceScale.ScaleMode.LINEAR,
+                null,
                 null);
     }
 
@@ -80,7 +82,22 @@ public record DefaultPlotContext(
                 false,
                 NiceScale.ScaleMode.LINEAR,
                 NiceScale.ScaleMode.LINEAR,
-                theme);
+                theme,
+                null);
+    }
+
+    public DefaultPlotContext(Rectangle2D bounds, ChartModel model, double viewMinX, double viewMaxX, double viewMinY, double viewMaxY,
+                              ChartTheme theme, com.arbergashi.charts.api.ChartRenderHints renderHints) {
+        this(bounds,
+                Double.isNaN(viewMinX) ? calculateMinX(model) : viewMinX,
+                Double.isNaN(viewMaxX) ? calculateMaxX(model) : viewMaxX,
+                Double.isNaN(viewMinY) ? calculateMinY(model) : viewMinY,
+                Double.isNaN(viewMaxY) ? calculateMaxY(model) : viewMaxY,
+                false,
+                NiceScale.ScaleMode.LINEAR,
+                NiceScale.ScaleMode.LINEAR,
+                theme,
+                renderHints);
     }
 
 

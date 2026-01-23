@@ -67,12 +67,22 @@ public class ECGChartPanelProvider {
             return new double[]{ecgValue};
         };
 
-        ArberChartPanel panel = ArberChartBuilder.create()
+        ArberChartPanel panel = ArberChartBuilder.of(model, new ECGRenderer())
                 .withTitle("ECG Monitor - Lead II Rhythm")
-                .addLayer(model, new ECGRenderer())
                 .withGridLayer(new MedicalGridLayer())
                 .withTooltips(true)
                 .withLegend(true)
+                .xAxis(axis -> axis
+                        .medicalScale(25)
+                        .setUnitSuffix("s")
+                        .setTicks(6))
+                .yAxis(axis -> axis
+                        .medicalScale(10)
+                        .setUnitSuffix("mV")
+                        .setTicks(6))
+                .hints(h -> h
+                        .antialiasing(true)
+                        .strokeWidth(1.6f))
                 .build();
 
         final double[] time = {0};

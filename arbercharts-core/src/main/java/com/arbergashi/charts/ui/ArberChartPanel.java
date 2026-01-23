@@ -6,6 +6,7 @@ import com.arbergashi.charts.api.ChartThemes;
 import com.arbergashi.charts.api.DefaultPlotContext;
 
 import com.arbergashi.charts.api.PlotContext;
+import com.arbergashi.charts.api.ChartRenderHints;
 import com.arbergashi.charts.model.ChartModel;
 import com.arbergashi.charts.model.ChartModel.ChartModelListener;
 import com.arbergashi.charts.render.BaseRenderer;
@@ -125,6 +126,7 @@ public class ArberChartPanel extends JPanel {
     private boolean animationsEnabled = true;
     private AxisConfig xAxisConfig = new AxisConfig();
     private AxisConfig yAxisConfig = new AxisConfig();
+    private ChartRenderHints renderHints = new ChartRenderHints();
 
     // --- Animation State ---
     private Timer zoomAnimationTimer;
@@ -691,6 +693,9 @@ public class ArberChartPanel extends JPanel {
             g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
             g2.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
             g2.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
+            if (renderHints != null) {
+                renderHints.applyTo(g2);
+            }
             
             // 2. Build Context (View Matrix)
             PlotContext ctx = getOrBuildContext();
@@ -709,6 +714,15 @@ public class ArberChartPanel extends JPanel {
                     if (!layerVisibility.isVisible(br.getId())) {
                         continue;
                     }
+                }
+                if (layer.model == null || layer.model.isEmpty()) {
+                    if (layer.renderer != null && layer.renderer.supportsEmptyState()) {
+                        Shape oldClip = g2.getClip();
+                        g2.clip(ctx.plotBounds());
+                        layer.renderer.renderEmptyState(g2, layer.model, ctx);
+                        g2.setClip(oldClip);
+                    }
+                    continue;
                 }
                 // Clip to plot bounds to prevent drawing outside
                 Shape oldClip = g2.getClip();
@@ -985,7 +999,12 @@ public class ArberChartPanel extends JPanel {
         // but the context bounds (minX/maxX) are what matters most for rendering.
         ChartModel primaryModel = layers.isEmpty() ? null : layers.getFirst().model;
 
-        contextCache = new DefaultPlotContext(plotBounds, primaryModel, viewMinX, viewMaxX, viewMinY, viewMaxY, theme);
+        applyAxisOverrides(plotBounds);
+        boolean invertX = xAxisConfig != null && xAxisConfig.isInverted();
+        boolean invertY = yAxisConfig != null && yAxisConfig.isInverted();
+        contextCache = new DefaultPlotContext(plotBounds, viewMinX, viewMaxX, viewMinY, viewMaxY, false, invertX, invertY,
+                com.arbergashi.charts.util.NiceScale.ScaleMode.LINEAR, com.arbergashi.charts.util.NiceScale.ScaleMode.LINEAR,
+                theme, renderHints);
 
         lastModelStamp = combinedStamp;
         cacheDirty = false;
@@ -1052,6 +1071,40 @@ public class ArberChartPanel extends JPanel {
         this.viewMaxX = maxX + rangeX * 0.05;
     }
 
+    void applyAxisOverrides(Rectangle2D plotBounds) {
+        if (plotBounds == null) return;
+
+        if (xAxisConfig != null) {
+            if (xAxisConfig.hasFixedRange()) {
+                viewMinX = xAxisConfig.getFixedMin();
+                viewMaxX = xAxisConfig.getFixedMax();
+            } else if (xAxisConfig.getUnitsPerPixel() != null && Double.isFinite(xAxisConfig.getUnitsPerPixel())) {
+                double range = plotBounds.getWidth() * xAxisConfig.getUnitsPerPixel();
+                double center = (viewMinX + viewMaxX) * 0.5;
+                if (!Double.isFinite(center)) {
+                    center = 0.0;
+                }
+                viewMinX = center - range / 2.0;
+                viewMaxX = center + range / 2.0;
+            }
+        }
+
+        if (yAxisConfig != null) {
+            if (yAxisConfig.hasFixedRange()) {
+                viewMinY = yAxisConfig.getFixedMin();
+                viewMaxY = yAxisConfig.getFixedMax();
+            } else if (yAxisConfig.getUnitsPerPixel() != null && Double.isFinite(yAxisConfig.getUnitsPerPixel())) {
+                double range = plotBounds.getHeight() * yAxisConfig.getUnitsPerPixel();
+                double center = (viewMinY + viewMaxY) * 0.5;
+                if (!Double.isFinite(center)) {
+                    center = 0.0;
+                }
+                viewMinY = center - range / 2.0;
+                viewMaxY = center + range / 2.0;
+            }
+        }
+    }
+
     private Rectangle2D.Double calculatePlotBounds() {
         double left = ChartScale.scale(padding.left), top = ChartScale.scale(padding.top);
         double right = ChartScale.scale(padding.right), bottom = ChartScale.scale(padding.bottom);
@@ -1086,6 +1139,15 @@ public class ArberChartPanel extends JPanel {
      */
     public ChartTheme getTheme() {
         return theme;
+    }
+
+    /**
+     * Sets rendering hints for this panel.
+     */
+    public ArberChartPanel setRenderHints(ChartRenderHints renderHints) {
+        this.renderHints = renderHints;
+        repaint();
+        return this;
     }
 
     /**

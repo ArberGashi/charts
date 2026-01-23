@@ -26,9 +26,12 @@ public record DefaultPlotContext(
         double minY,
         double maxY,
         boolean logarithmicY,
+        boolean invertedX,
+        boolean invertedY,
         NiceScale.ScaleMode scaleModeX,
         NiceScale.ScaleMode scaleModeY,
-        ChartTheme theme
+        ChartTheme theme,
+        ChartRenderHints renderHints
 ) implements PlotContext {
 
     public DefaultPlotContext {
@@ -49,7 +52,23 @@ public record DefaultPlotContext(
                               boolean logarithmicY,
                               NiceScale.ScaleMode scaleModeX,
                               NiceScale.ScaleMode scaleModeY) {
-        this(bounds, minX, maxX, minY, maxY, logarithmicY, scaleModeX, scaleModeY, null);
+        this(bounds, minX, maxX, minY, maxY, logarithmicY, false, false, scaleModeX, scaleModeY, null, null);
+    }
+
+    /**
+     * Constructor that allows axis inversion without a theme or render hints.
+     */
+    public DefaultPlotContext(Rectangle2D bounds,
+                              double minX,
+                              double maxX,
+                              double minY,
+                              double maxY,
+                              boolean logarithmicY,
+                              boolean invertedX,
+                              boolean invertedY,
+                              NiceScale.ScaleMode scaleModeX,
+                              NiceScale.ScaleMode scaleModeY) {
+        this(bounds, minX, maxX, minY, maxY, logarithmicY, invertedX, invertedY, scaleModeX, scaleModeY, null, null);
     }
 
     /**
@@ -62,8 +81,11 @@ public record DefaultPlotContext(
                 Double.isNaN(viewMinY) ? calculateMinY(model) : viewMinY,
                 Double.isNaN(viewMaxY) ? calculateMaxY(model) : viewMaxY,
                 false,
+                false,
+                false,
                 NiceScale.ScaleMode.LINEAR,
                 NiceScale.ScaleMode.LINEAR,
+                null,
                 null);
     }
 
@@ -77,9 +99,31 @@ public record DefaultPlotContext(
                 Double.isNaN(viewMinY) ? calculateMinY(model) : viewMinY,
                 Double.isNaN(viewMaxY) ? calculateMaxY(model) : viewMaxY,
                 false,
+                false,
+                false,
                 NiceScale.ScaleMode.LINEAR,
                 NiceScale.ScaleMode.LINEAR,
-                theme);
+                theme,
+                null);
+    }
+
+    /**
+     * Theme-aware constructor with render hints.
+     */
+    public DefaultPlotContext(Rectangle2D bounds, ChartModel model, double viewMinX, double viewMaxX, double viewMinY, double viewMaxY,
+                              ChartTheme theme, ChartRenderHints renderHints) {
+        this(bounds,
+                Double.isNaN(viewMinX) ? calculateMinX(model) : viewMinX,
+                Double.isNaN(viewMaxX) ? calculateMaxX(model) : viewMaxX,
+                Double.isNaN(viewMinY) ? calculateMinY(model) : viewMinY,
+                Double.isNaN(viewMaxY) ? calculateMaxY(model) : viewMaxY,
+                false,
+                false,
+                false,
+                NiceScale.ScaleMode.LINEAR,
+                NiceScale.ScaleMode.LINEAR,
+                theme,
+                renderHints);
     }
 
     @Override
@@ -105,6 +149,9 @@ public record DefaultPlotContext(
         double tX = (x - minX) / dx;
         double tY = (y - minY) / dy;
 
+        if (invertedX) tX = 1.0 - tX;
+        if (invertedY) tY = 1.0 - tY;
+
         out[0] = bx + tX * bw;
         out[1] = by + bh - tY * bh;
     }
@@ -127,6 +174,9 @@ public record DefaultPlotContext(
         double tX = (pixelX - bx) / bw;
         double tY = (by + bh - pixelY) / bh;
 
+        if (invertedX) tX = 1.0 - tX;
+        if (invertedY) tY = 1.0 - tY;
+
         dest[0] = minX + tX * dx;
         dest[1] = minY + tY * dy;
     }
@@ -134,6 +184,16 @@ public record DefaultPlotContext(
     @Override
     public boolean isLogarithmicY() {
         return logarithmicY || scaleModeY == NiceScale.ScaleMode.LOGARITHMIC;
+    }
+
+    @Override
+    public boolean isInvertedX() {
+        return invertedX;
+    }
+
+    @Override
+    public boolean isInvertedY() {
+        return invertedY;
     }
 
     private static double calculateMinX(ChartModel m) {

@@ -47,6 +47,10 @@ public class HeatmapRenderer extends BaseRenderer implements ChartRenderer {
     private double minVal = 0;
     private double maxVal = 1;
     private double gridMinX, gridMaxX, gridMinY, gridMaxY;
+    private transient double lastHoverX;
+    private transient double lastHoverY;
+    private transient double lastHoverValue;
+    private transient boolean lastHoverValid;
 
     public HeatmapRenderer() {
         super("heatmap");
@@ -59,6 +63,9 @@ public class HeatmapRenderer extends BaseRenderer implements ChartRenderer {
 
     @Override
     public String getTooltipText(int index, ChartModel model) {
+        if (lastHoverValid) {
+            return String.format("(%.2f, %.2f) = %.3f", lastHoverX, lastHoverY, lastHoverValue);
+        }
         // Simple tooltip: show value at index if available
         if (model == null || index < 0 || index >= model.getPointCount()) return null;
         double x = model.getXData()[index];
@@ -68,8 +75,72 @@ public class HeatmapRenderer extends BaseRenderer implements ChartRenderer {
 
     @Override
     public java.util.Optional<Integer> getPointAt(java.awt.geom.Point2D pixel, ChartModel model, PlotContext context) {
-        // Not implemented: return empty
-        return java.util.Optional.empty();
+        lastHoverValid = false;
+        if (pixel == null || context == null) return java.util.Optional.empty();
+
+        double[] data = pBuffer();
+        context.mapToData(pixel.getX(), pixel.getY(), data);
+
+        if (gridData != null && gridData.length > 0) {
+            int rows = gridData.length;
+            int cols = gridData[0].length;
+            if (data[0] < gridMinX || data[0] > gridMaxX || data[1] < gridMinY || data[1] > gridMaxY) {
+                return java.util.Optional.empty();
+            }
+            double stepX = (gridMaxX - gridMinX) / cols;
+            double stepY = (gridMaxY - gridMinY) / rows;
+            int c = (int) ((data[0] - gridMinX) / stepX);
+            int r = (int) ((data[1] - gridMinY) / stepY);
+            if (c < 0 || c >= cols || r < 0 || r >= rows) return java.util.Optional.empty();
+            lastHoverX = gridMinX + (c + 0.5) * stepX;
+            lastHoverY = gridMinY + (r + 0.5) * stepY;
+            lastHoverValue = gridData[r][c];
+            lastHoverValid = true;
+            return java.util.Optional.of(r * cols + c);
+        }
+
+        if (model == null || model.getPointCount() == 0) return java.util.Optional.empty();
+
+        int cols = ChartAssets.getInt("chart.heatmap.cols", 64);
+        int rows = ChartAssets.getInt("chart.heatmap.rows", 64);
+        if (cols <= 0 || rows <= 0) return java.util.Optional.empty();
+
+        double minX = context.minX();
+        double maxX = context.maxX();
+        double minY = context.minY();
+        double maxY = context.maxY();
+        if (data[0] < minX || data[0] > maxX || data[1] < minY || data[1] > maxY) {
+            return java.util.Optional.empty();
+        }
+
+        double stepX = (maxX - minX) / cols;
+        double stepY = (maxY - minY) / rows;
+        int c = (int) ((data[0] - minX) / stepX);
+        int r = (int) ((data[1] - minY) / stepY);
+        if (c < 0 || c >= cols || r < 0 || r >= rows) return java.util.Optional.empty();
+
+        double binMinX = minX + c * stepX;
+        double binMaxX = binMinX + stepX;
+        double binMinY = minY + r * stepY;
+        double binMaxY = binMinY + stepY;
+
+        double[] xData = model.getXData();
+        double[] yData = model.getYData();
+        int count = Math.min(model.getPointCount(), Math.min(xData.length, yData.length));
+        int hits = 0;
+        for (int i = 0; i < count; i++) {
+            double x = xData[i];
+            double y = yData[i];
+            if (x >= binMinX && x < binMaxX && y >= binMinY && y < binMaxY) {
+                hits++;
+            }
+        }
+
+        lastHoverX = binMinX + stepX * 0.5;
+        lastHoverY = binMinY + stepY * 0.5;
+        lastHoverValue = hits;
+        lastHoverValid = true;
+        return java.util.Optional.of(r * cols + c);
     }
 
     /**

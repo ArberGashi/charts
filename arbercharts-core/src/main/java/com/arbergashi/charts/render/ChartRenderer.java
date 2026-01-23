@@ -84,6 +84,23 @@ public interface ChartRenderer {
     }
 
     /**
+     * Whether this renderer can draw an empty-state placeholder when its model is empty.
+     */
+    default boolean supportsEmptyState() {
+        return false;
+    }
+
+    /**
+     * Renders a renderer-specific empty state. Called only when {@link #supportsEmptyState()} is true.
+     *
+     * @param g2 graphics target
+     * @param model data model for this layer (empty)
+     * @param context current plot context
+     */
+    default void renderEmptyState(Graphics2D g2, ChartModel model, PlotContext context) {
+    }
+
+    /**
      * Returns the human-readable renderer name for legends/tooltips.
      *
      * @return renderer name

@@ -106,9 +106,12 @@ public class FinancialGridLayerTest {
                 minY,
                 maxY,
                 false,
+                false,
+                false,
                 com.arbergashi.charts.util.NiceScale.ScaleMode.LINEAR,
                 com.arbergashi.charts.util.NiceScale.ScaleMode.LINEAR,
-                theme
+                theme,
+                null
         );
     }
 

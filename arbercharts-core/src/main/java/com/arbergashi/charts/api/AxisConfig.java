@@ -21,7 +21,11 @@ public final class AxisConfig {
     private String labelFormatPattern = null;
     private String unitSuffix = ""; /* For units like %, CHF, m/s */
     private boolean autoScale = true;
+    private boolean inverted = false;
     private Locale locale = Locale.getDefault();
+    private Double fixedMin = null;
+    private Double fixedMax = null;
+    private Double unitsPerPixel = null;
 
     private transient NumberFormat cachedNumberFormat;
     private transient DecimalFormat cachedDecimalFormat;
@@ -122,6 +126,16 @@ public final class AxisConfig {
     }
 
     /**
+     * Alias for {@link #setRequestedTickCount(int)}.
+     *
+     * @param count desired tick count
+     * @return this config for chaining
+     */
+    public AxisConfig setTicks(int count) {
+        return setRequestedTickCount(count);
+    }
+
+    /**
      * Retrieves the label format pattern for the axis.
      *
      * @return the label format pattern, or null if not set.
@@ -179,6 +193,93 @@ public final class AxisConfig {
     public AxisConfig setAutoScale(boolean autoScale) {
         this.autoScale = autoScale;
         return this;
+    }
+
+    /**
+     * Sets a fixed data range for the axis.
+     *
+     * @param min fixed minimum value
+     * @param max fixed maximum value
+     * @return this config for chaining
+     */
+    public AxisConfig setFixedRange(double min, double max) {
+        this.fixedMin = min;
+        this.fixedMax = max;
+        return this;
+    }
+
+    /**
+     * Returns whether a fixed range is configured.
+     */
+    public boolean hasFixedRange() {
+        return fixedMin != null && fixedMax != null;
+    }
+
+    /**
+     * Returns the fixed minimum value if configured.
+     */
+    public Double getFixedMin() {
+        return fixedMin;
+    }
+
+    /**
+     * Returns the fixed maximum value if configured.
+     */
+    public Double getFixedMax() {
+        return fixedMax;
+    }
+
+    /**
+     * Sets the data units per pixel for a fixed physical scale (e.g., mm/s).
+     * A null value disables fixed scale behavior.
+     *
+     * @param unitsPerPixel data units per pixel
+     * @return this config for chaining
+     */
+    public AxisConfig setUnitsPerPixel(Double unitsPerPixel) {
+        this.unitsPerPixel = unitsPerPixel;
+        return this;
+    }
+
+    /**
+     * Returns the configured units per pixel, or null if not set.
+     */
+    public Double getUnitsPerPixel() {
+        return unitsPerPixel;
+    }
+
+    /**
+     * Convenience for medical/physical scaling. This sets units-per-pixel using
+     * a mm-per-unit ratio (e.g., 25 mm/s or 10 mm/mV).
+     *
+     * @param mmPerUnit millimeters per data unit
+     * @return this config for chaining
+     */
+    public AxisConfig medicalScale(double mmPerUnit) {
+        if (mmPerUnit == 0) {
+            this.unitsPerPixel = null;
+        } else {
+            this.unitsPerPixel = 1.0 / mmPerUnit;
+        }
+        return this;
+    }
+
+    /**
+     * Sets whether this axis is inverted.
+     *
+     * @param inverted true to invert the axis direction
+     * @return this config for chaining
+     */
+    public AxisConfig setInverted(boolean inverted) {
+        this.inverted = inverted;
+        return this;
+    }
+
+    /**
+     * Returns whether this axis is inverted.
+     */
+    public boolean isInverted() {
+        return inverted;
     }
 
     /**
