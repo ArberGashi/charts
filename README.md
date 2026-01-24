@@ -1,61 +1,83 @@
-# ArberCharts
+# ArberCharts v1.3.0 "Surgeon" 🚀
 
-ArberCharts is a premium Java charting framework built for production systems that demand
-deterministic rendering, high‑end visuals, and developer‑friendly APIs. It delivers
-**139 renderers** across Standard, Financial, Statistical, Specialized, Medical, and Analysis domains.
+ArberCharts is a premium Java charting framework engineered for production systems that demand deterministic rendering, high-end visuals, and developer-friendly APIs. It is designed for environments where performance is non-negotiable.
 
-## Important Note
+The current version, **v1.3.0 "Surgeon"**, introduces enhanced lock-free circular models and specialized medical sweep-erase modes, specifically tuned for the performance capabilities of **JDK 25**.
 
-This public repository is used for releases only.  
+---
+
+## 🛡️ Important Note
+This public repository is used for **distribution and releases only**.  
 The source code is proprietary and is not published here.
 
-## Product Strengths
+---
 
-- **Zero‑GC rendering mindset**: allocation‑free render loops to avoid micro‑stutters.
-- **Fluent API with ArberChartBuilder**: assemble charts in a few readable lines.
-- **139 renderers**: deep coverage for Financial, Medical, Statistical, and Specialized charts.
-- **Presentation‑grade UI features**: legends, tooltips, crosshair, grid layers.
-- **Export pipeline**: PNG/SVG/PDF for reporting and distribution.
-- **Java Swing native integration**: built for desktop UI with precise rendering control.
-- **Spring Boot friendly**: clean integration for services + desktop delivery workflows.
-- **JDK 25 optimized**: tuned for modern runtime performance.
-- **Demo app**: a complete showcase for evaluation and client presentations.
+## 💎 Product Strengths
 
-## Use Cases
+* **Zero-GC Rendering Pipeline**: Allocation-free render loops to eliminate micro-stutters and GC-related latency even with millions of data points.
+* **139 Specialized Renderers**: Deep coverage for Financial, Medical, Statistical, and Advanced Analysis domains.
+* **Fluent API (ArberChartBuilder)**: Construct complex, multi-layered charts with legends, tooltips, and themes in just a few readable lines.
+* **Java 25 Optimized**: Specifically tuned for modern JVM runtimes (Loom/JDK 25 ready).
+* **Swing-Native & Spring Boot Friendly**: Seamless integration into mission-critical desktop frontends and modular enterprise stacks.
+* **Export Pipeline**: High-fidelity PNG, SVG, and PDF export for professional reporting and distribution.
 
-- **Medical & Life Sciences**: real‑time ECG/EEG with sweep‑erase and high‑precision crosshair.
-- **Financial Engineering**: candlesticks, Ichimoku, Renko, Volume Profile, technical overlays.
-- **Advanced Analytics**: Sankey, Network, Hexbin, FFT, regression and anomaly detection.
-- **Industrial & Engineering**: control charts, heatmaps, Delaunay/Voronoi, multivariate analysis.
+---
 
-## Downloads
+## 🏗️ Use Cases
 
-Release assets are published on GitHub Releases:
-https://github.com/ArberGashi/charts/releases
+### 🏥 Medical & Life Sciences
+Real-time ECG/EEG visualization using specialized **Sweep-Erase** modes. Includes lock-free data integrity and sub-pixel precision for vital signs monitoring.
 
-- Core JAR: `arbercharts-core-1.0.0.jar`
-- Demo JAR: `arbercharts-demo-1.0.0.jar`
+### 💹 Financial Engineering
+Comprehensive suite for market analysis: Candlesticks (Hollow/Solid), Ichimoku Clouds, Renko, Kagi, Volume Profiles, and various technical indicators (MACD, RSI, ATR).
 
-## Quick Start (Demo)
+### 📊 Advanced Analytics & Statistics
+Complex data visualization including Sankey Pro (Alluvial), Violin Plots, Ridgeline Plots, Hexbinning, and FFT (Fourier) analysis.
+
+### ⚙️ Industrial & Engineering
+System diagnostics and process monitoring with Heatmaps, Delaunay/Voronoi triangulation, Vector Fields, and multivariate analysis.
+
+---
+
+## 📦 Downloads (v1.3.0)
+
+The latest release assets are published in the GitHub Releases section:  
+👉 [**View Releases**](https://github.com/ArberGashi/charts/releases)
+
+* **Core Framework**: `arbercharts-core-1.3.0.jar` (The engine for your project)
+* **Showcase App**: `arbercharts-demo-1.3.0.jar` (Full interactive preview)
+
+---
+
+## 🚀 Quick Start (Demo)
+
+Experience all 139 renderers and real-time performance instantly. Run the following command (ensure you have a JRE installed):
 
 ```bash
-java --enable-native-access=ALL-UNNAMED -jar arbercharts-demo-1.0.0.jar
-```
+java -jar arbercharts-demo-1.3.0.jar
+System Requirements: Java 25 recommended for optimal performance.
 
-## System Requirements
+⚖️ License (Proprietary)
+ArberCharts is proprietary software. Use is subject to the following license models:
 
-- Java 25 recommended
+Individual Developer License: Free of charge for development, evaluation, and non-commercial private projects.
 
-## License (Proprietary)
+Team License: Required for commercial development within small or large professional teams.
 
-- Individual Developer License: free for development & evaluation
-- Team License: required for small and large teams
-- Runtime/Distribution License: required for commercial products shipped to end customers
+Distribution License: Required for shipping ArberCharts as part of a commercial product to end customers.
 
-## Support
+For detailed licensing terms, please visit arbergashi.com/licensing.
 
-gashi@pro-business.ch  
-https://www.arbergashi.com
+🌐 Support & Contact
+Arber Gashi Chief Software Architect
+
+📧 gashi@pro-business.ch
+
+🌍 www.arbergashi.com
+
+📍 Switzerland
+
+© 2026 Arber Gashi. All rights reserved.
 
 
 <img width="2108" height="1444" alt="radarchart" src="https://github.com/user-attachments/assets/55380ce5-8f1e-4ccb-9296-b9bf8e33c029" />
