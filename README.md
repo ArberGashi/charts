@@ -44,8 +44,8 @@ System diagnostics and process monitoring with Heatmaps, Delaunay/Voronoi triang
 The latest release assets are published in the GitHub Releases section:  
 👉 [**View Releases**](https://github.com/ArberGashi/charts/releases)
 
-* **Core Framework**: `arbercharts-core-1.3.0.jar` (The engine for your project)
-* **Showcase App**: `arbercharts-demo-1.3.0.jar` (Full interactive preview)
+* **Core Framework**: `arbercharts-core-1.3.0.jar`
+* **Showcase App**: `arbercharts-demo-1.3.0.jar`
 
 ---
 
@@ -53,9 +53,7 @@ The latest release assets are published in the GitHub Releases section:
 
 Experience all 139 renderers and real-time performance instantly. Run the following command (ensure you have a JRE installed):
 
-```bash
-java -jar arbercharts-demo-1.3.0.jar
-System Requirements: Java 25 recommended for optimal performance.
+ystem Requirements: Java 21 minimum, Java 25 recommended for optimal performance.
 
 ⚖️ License (Proprietary)
 ArberCharts is proprietary software. Use is subject to the following license models:
