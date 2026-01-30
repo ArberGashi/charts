@@ -1,0 +1,3 @@
+module ArberCharts {
+    header "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/ArberCharts.build/include/ArberCharts-Swift.h"
+}

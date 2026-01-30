@@ -1,0 +1,269 @@
+{
+  "builtTestProducts" : [
+
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.ArberCharts-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/ArberCharts.build/sources",
+      "importPath" : "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/Sources/ArberCharts/ArberBridge.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/Sources/ArberCharts/ArberChartView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/ArberChartsC.build/stub.c.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/ArberCharts.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "ArberCharts",
+      "moduleOutputPath" : "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/Modules/ArberCharts.swiftmodule",
+      "objects" : [
+        "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/ArberCharts.build/ArberBridge.swift.o",
+        "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/ArberCharts.build/ArberChartView.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j11",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-Xcc",
+        "-fmodule-map-file=/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/Sources/ArberChartsC/include/module.modulemap",
+        "-Xcc",
+        "-I",
+        "-Xcc",
+        "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/Sources/ArberChartsC/include",
+        "-module-cache-path",
+        "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/ArberCharts.build/include/ArberCharts-Swift.h",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "arbercharts_swift_bridge"
+      ],
+      "outputFileMapPath" : "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/ArberCharts.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/ArberCharts.build/ArberBridge.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/ArberCharts.build/ArberChartView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/Modules/ArberCharts.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/Sources/ArberCharts/ArberBridge.swift",
+        "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/Sources/ArberCharts/ArberChartView.swift"
+      ],
+      "tempsPath" : "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/ArberCharts.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "ArberCharts" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "ArberCharts",
+      "-package-name",
+      "arbercharts_swift_bridge",
+      "-c",
+      "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/Sources/ArberCharts/ArberBridge.swift",
+      "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/Sources/ArberCharts/ArberChartView.swift",
+      "-I",
+      "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j11",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-Xcc",
+      "-fmodule-map-file=/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/Sources/ArberChartsC/include/module.modulemap",
+      "-Xcc",
+      "-I",
+      "-Xcc",
+      "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/Sources/ArberChartsC/include",
+      "-module-cache-path",
+      "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/ArberCharts.build/include/ArberCharts-Swift.h",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "arbercharts_swift_bridge",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "ArberCharts" : [
+      "ArberChartsC"
+    ],
+    "ArberChartsC" : [
+
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/ArberCharts.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/Sources/ArberCharts/ArberBridge.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/Sources/ArberCharts/ArberChartView.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/ArberCharts.build/sources"
+    },
+    "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/gashi/Documents/workspace/charts/arbercharts-swift-bridge/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}
