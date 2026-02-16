@@ -1,11 +1,11 @@
 # ArberCharts v2.0.0 Downloads
 
-Dieses Verzeichnis enthält die Release-Artefakte.
+Dieses Verzeichnis enthält die aktiven Release-Artefakte für ArberCharts 2.0.0.
 
 ## Verfügbare Downloads
 
 - arbercharts-starter-2.0.0.jar - Starter Bundle
-- arbercharts-starter-1.7.0-LTS.jar - LTS für Bestandskunden
+- arbercharts-demo-2.0.0.jar - Demo Application
 
 ## Hinweis
 
