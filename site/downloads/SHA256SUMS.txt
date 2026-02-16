@@ -1,0 +1,3 @@
+5558269c31fed6593cf75a51c88bd62433260526b5bb3a5c36eac39310876fad  arbercharts-starter-2.0.0.jar
+fcdbdbc4421dd2be1c3eb46defe9a0324bfc2adf3355e817b9678d654f114236  arbercharts-demo-2.0.0.jar
+82111e65da0afd7613eb2cabcc1046c4eacc8d6c8720d0849e997e7be88f713c  arbercharts-visual-verifier-2.0.0.jar
