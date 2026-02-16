@@ -10,3 +10,9 @@ Dieses Verzeichnis enthält die aktiven Release-Artefakte für ArberCharts 2.0.0
 ## Hinweis
 
 Die vollständigen JARs werden beim Release-Build generiert.
+
+## Lizenz- und Delivery-Modell
+
+- Die Artefakte werden unter MIT ausgeliefert.
+- Endprodukte beim Kunden dürfen closed source bleiben.
+- Kommerzielles Modell: Support, SLA und Integrationsleistungen.
