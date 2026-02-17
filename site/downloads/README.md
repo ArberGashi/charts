@@ -6,7 +6,6 @@ Dieses Verzeichnis enthält die aktiven Release-Artefakte für ArberCharts 2.0.0
 
 - arbercharts-starter-2.0.0.jar - Starter Bundle
 - arbercharts-demo-2.0.0.jar - Demo Application
-- arbercharts-visual-verifier-2.0.0.jar - Visual Verifier
 
 ## Integritätsprüfung
 
