@@ -1,2 +1,0 @@
-cfd2ceacc3da29a967c595930c1505d0b7e9e8ed9c0b73cf0e266c80e6007e07  arbercharts-starter-2.0.0.jar
-b8ca2986ae513e25327076936f9c1bf6274c77b9afcd3119453acc4cedf28baf  arbercharts-demo-2.0.0.jar
